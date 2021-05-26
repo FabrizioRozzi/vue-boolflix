@@ -3,10 +3,14 @@
   <div class="d-flex wrap-header justify-content-center align-items-center">
       <form>
         <input 
+          v-model="text"
           type="text"
           placeholder="Inserisci un titolo di un film"
         >
-        <button class="btn-primary ms-3">Cerca</button>
+        <button 
+          @click.prevent="search"
+          class="btn-primary ms-3">Cerca
+        </button>
 
       </form>
     
@@ -15,7 +19,20 @@
 
 <script>
 export default {
-  name : 'SearchBar'
+  name : 'SearchBar',
+  data(){
+    return{
+      text : ''
+    }
+  },
+  methods:{
+    search(){
+      //console.log(this.text);
+      this.$emit("searching", this.text)
+      this.text=""
+    }
+  }
+
 }
 </script>
 

@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <SearchBar />
+    <SearchBar 
+      @searching="searched"
+    />
     <Card 
-      v-for="film in this.arrFilm"
+      v-for="film in arrFilm"
       :key="film.id"
       :film="film"
     />
@@ -25,25 +27,32 @@ export default {
       arrFilm : [],
       apiURL : "https://api.themoviedb.org/3/search/movie",
       apiKey : '186ab9d59ce76af2382545bfd0366db4',
-      query : 'fantozzi'
+      query : ''
     }
   },
-  created(){
-    axios.get(this.apiURL,{
-      params:{
-        api_key : this.apiKey,
-        query : this.query,
-        language: 'it-IT'
-      }
-    })
-    .then(resp =>{
-      this.arrFilm = resp.data.results
-      console.log(this.arrFilm);
-    })
-    .catch(err =>{
-      console.log(err);
-    })
-  }
+    methods:{
+      searched(text){
+        
+        axios.get(this.apiURL,{
+        params:{
+          api_key : this.apiKey,
+          query : text,
+          language: 'it-IT'
+        }
+      })
+    
+      .then(resp =>{
+         this.arrFilm = resp.data.results
+        
+      })
+      .catch(err =>{
+        console.log(err);
+      })
+        }
+        
+    }
+  
+  
 }
 </script>
 
