@@ -1,5 +1,6 @@
 <template>
   <div>
+    
     <ul>
       <li>
         <h4>{{film.title}}</h4>
@@ -14,6 +15,7 @@
         <h6>{{film.vote_average}}</h6>
       </li>
     </ul>
+
     
     
   </div>
@@ -21,10 +23,15 @@
 
 <script>
 export default {
-  name : 'Card',
+  name : 'Film',
   props:{
-    film : Object
-  }
+    film : Object,
+    
+    type : String
+
+  },
+ 
+
 }
 </script>
 

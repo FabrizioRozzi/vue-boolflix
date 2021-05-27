@@ -1,58 +1,109 @@
 <template>
   <div id="app">
     <SearchBar 
-      @searching="searched"
+      @searching="startSearch"
     />
-    <Card 
-      v-for="film in arrFilm"
-      :key="film.id"
-      :film="film"
-    />
+
+    
+        <Film 
+          type='movie'
+          v-for="film in result.movie"
+          :key="film.id"
+          :film="film"
+        />
+
+      
+   
+
+   
+      
+        <Serie 
+          type='tv'
+          v-for="serie in result.tv"
+          :key="serie.id"
+          :serie="serie"
+        />
+
+      
+   
+    
+
+    
+
+
   </div>
 </template>
 
 <script>
   import axios from 'axios'
   import SearchBar from "@/components/SearchBar.vue"
-  import Card from "@/components/Card.vue"
+  import Film from "@/components/Film.vue"
+  import Serie from "@/components/Serie.vue"
+ 
 
 export default {
   name: 'App',
   components: {
     SearchBar,
-    Card
+    Film,
+    Serie
   },
   data(){
     return{
-      arrFilm : [],
-      apiURL : "https://api.themoviedb.org/3/search/movie",
+      titles:{
+        'movie' : 'Film trovati',
+        'tv' : 'Serie tv trovate' 
+      },
+      result:{
+        'movie': [],
+        'tv':[]
+      },
+      apiURL : "https://api.themoviedb.org/3/search/",
       apiKey : '186ab9d59ce76af2382545bfd0366db4',
       query : ''
+      
     }
   },
     methods:{
-      searched(text){
+      startSearch(obj){
+        this.reset();
+        if(obj.type === 'all'){
+          this.searched(obj.text, 'movie');
+          this.searched(obj.text, 'tv');
+        }else{
+          this.searched(obj.text, obj.type);
+          
+        }
+      },
+
+      reset(){
+        this.result.movie = [];
+        this.result.tv = [];
+      },
+
+      searched(text , type){
         
-        axios.get(this.apiURL,{
+        axios.get(this.apiURL+type,{
         params:{
           api_key : this.apiKey,
           query : text,
           language: 'it-IT'
         }
-      })
+        })
     
-      .then(resp =>{
-         this.arrFilm = resp.data.results
+        .then(resp =>{
+          this.result[type] = resp.data.results;
+          console.log(this.result);
+        })
+        .catch(err =>{
+          console.log(err);
+        })
         
-      })
-      .catch(err =>{
-        console.log(err);
-      })
-        }
-        
+      },
+
+      
+  
     }
-  
-  
 }
 </script>
 

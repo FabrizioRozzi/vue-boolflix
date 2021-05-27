@@ -8,8 +8,16 @@
           placeholder="Inserisci un titolo di un film"
         >
         <button 
-          @click.prevent="search"
-          class="btn-primary ms-3">Cerca
+          @click.prevent="$emit('searching', {text:text, type:'movie'})"
+          class="btn-primary ms-3">Film
+        </button>
+        <button 
+          @click.prevent="$emit('searching', {text:text, type:'tv'})"
+          class="btn-primary ms-3">Serie
+        </button>
+        <button 
+          @click.prevent="$emit('searching', {text:text, type:'all'})"
+          class="btn-primary ms-3">All
         </button>
 
       </form>
@@ -22,15 +30,15 @@ export default {
   name : 'SearchBar',
   data(){
     return{
-      text : ''
+     
+        text : '',
+        type : ''
+ 
+      
     }
   },
   methods:{
-    search(){
-      //console.log(this.text);
-      this.$emit("searching", this.text)
-      this.text=""
-    }
+    
   }
 
 }
@@ -42,9 +50,6 @@ export default {
     width: 100%;
     input{
       width: 400px;
-    }
-    button{
-     
     }
   }
 </style>
