@@ -5,24 +5,24 @@
     />
 
     
-        <Film 
-          type='movie'
-          v-for="film in result.movie"
-          :key="film.id"
-          :film="film"
-        />
+    <Film 
+      type='movie'
+      v-for="film in result.movie"
+      :key="film.id"        
+      :film="film"
+    />
 
       
    
 
    
       
-        <Serie 
-          type='tv'
-          v-for="serie in result.tv"
-          :key="serie.id"
-          :serie="serie"
-        />
+    <Serie 
+      type='tv'
+      v-for="serie in result.tv"
+      :key="serie.id"
+      :serie="serie"
+    />
 
       
    

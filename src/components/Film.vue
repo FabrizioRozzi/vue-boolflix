@@ -9,14 +9,26 @@
         <h5>{{film.original_title}}</h5>
       </li>
       <li>
-        <h6>{{film.original_language}}</h6>
+        <flag :iso="film.original_language === 'en' ? 'gb' : film.original_language" />
       </li>
       <li>
-        <h6>{{film.vote_average}}</h6>
+        <div class="star"
+          v-for="index in 5"  :key="index"
+        >
+          <i
+            v-if="index > Math.round(film.vote_average/2)"
+            class="far fa-star">
+          </i>
+
+          <i 
+            v-else
+            class="fas fa-star">
+          </i>
+        </div>
       </li>
     </ul>
 
-    
+    <img :src=" 'http://image.tmdb.org/t/p/w342' + film.poster_path " alt="">
     
   </div>
 </template>
@@ -36,5 +48,7 @@ export default {
 </script>
 
 <style >
-
+  .star{
+    display: inline-block;
+  }
 </style>

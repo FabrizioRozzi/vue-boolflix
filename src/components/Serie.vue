@@ -8,12 +8,25 @@
         <h5>{{serie.original_name}}</h5>
       </li>
       <li>
-        <h6>{{serie.original_language}}</h6>
+        <flag :iso="serie.original_language === 'en' ? 'gb' : serie.original_language" />
       </li>
       <li>
-        <h6>{{serie.vote_average}}</h6>
+        <div class="star"
+          v-for="index in 5"  :key="index"
+        >
+          <i
+            v-if="index > Math.round(serie.vote_average/2)"
+            class="far fa-star">
+          </i>
+
+          <i 
+            v-else
+            class="fas fa-star">
+          </i>
+        </div>
       </li>
     </ul>
+    <img :src=" 'http://image.tmdb.org/t/p/w342' + serie.poster_path " alt="">
   </div>
     
     
@@ -29,5 +42,7 @@ export default {
 </script>
 
 <style>
-
+  .star{
+    display: inline-block;
+  }
 </style>
