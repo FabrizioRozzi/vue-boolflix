@@ -1,6 +1,6 @@
 <template>
-  
-  <div class="d-flex wrap-header justify-content-center align-items-center">
+  <div class="header">
+    <div class="d-flex wrap-header justify-content-center align-items-center">
       <form>
         <input 
           v-model="text"
@@ -22,7 +22,9 @@
 
       </form>
     
+    </div>
   </div>
+  
 </template>
 
 <script>
@@ -45,11 +47,16 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+ 
+    
   .wrap-header{
-    height: 100px;
     width: 100%;
+    height: 100px;
+    background-color: black;
     input{
       width: 400px;
     }
   }
+
+    
 </style>

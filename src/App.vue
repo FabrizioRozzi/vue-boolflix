@@ -3,34 +3,31 @@
     <SearchBar 
       @searching="startSearch"
     />
+    <div class="max">
+      <h1 v-if="this.result.movie.length > 0">
+        Film trovati:
+      </h1>
+      <Film 
+        type='movie'
+        v-for="film in result.movie"
+        :key="film.id"        
+        :film="film"
+      />
 
-    
-    <Film 
-      type='movie'
-      v-for="film in result.movie"
-      :key="film.id"        
-      :film="film"
-    />
-
-      
-   
-
-   
-      
-    <Serie 
-      type='tv'
-      v-for="serie in result.tv"
-      :key="serie.id"
-      :serie="serie"
-    />
-
-      
-   
+        
     
 
     
-
-
+      <h1 v-if="this.result.tv.length > 0">
+        Serie tv trovate:
+      </h1>
+      <Serie 
+        type='tv'
+        v-for="serie in result.tv"
+        :key="serie.id"
+        :serie="serie"
+      />
+    </div>
   </div>
 </template>
 
@@ -108,5 +105,12 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '@/assets/style/general'
+  @import '@/assets/style/general';
+  h1{
+    color:white;
+  }
+  .max{
+    max-width: 1200px;
+    margin: 0 auto;
+  }
 </style>
