@@ -13,30 +13,30 @@
       <div class="flip-card-back">
         <ul>
           <li>
-            Titolo: {{serie.name}}
+            <strong>Titolo : </strong> {{serie.name}}
           </li>
           <li
             v-if="serie.name != serie.original_name"
           >
             
-              Titolo originale: {{serie.original_name}}
+              <strong>Titolo originale: </strong> {{serie.original_name}}
           </li>
           <li>
-            <flag :iso="serie.original_language === 'en' ? 'gb' : serie.original_language" />
+            <strong>Lingua: </strong> <flag :iso="serie.original_language === 'en' ? 'gb' : serie.original_language" />
           </li>
           <li>
+            <strong>Voto: </strong>
             <div class="star"
-              v-for="index in 5"  :key="index"
+              :style="`width:${7*serie.vote_average}px`"
             >
-              <i
-                v-if="index > Math.round(serie.vote_average/2)"
-                class="far fa-star">
-              </i>
-
-              <i 
-                v-else
-                class="fas fa-star">
-              </i>
+              <div class="cont-star">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              
             </div>
           </li>
           <li class="p">
@@ -57,6 +57,11 @@ export default {
   props:{
     serie : Object
   },
+  data(){
+    return{
+      
+    }
+  }
 }
 
 
@@ -69,12 +74,15 @@ export default {
 }
 .star{
   display: inline-block;
+  overflow-x: hidden;
+  .cont-star{
+    width: 70px;
+  }
 }
 
 .card-container{
   display: inline-flex;
-  justify-content: space-between;
-  
+  justify-content: space-around;
   padding: 5px 10px;
 }
   
@@ -122,10 +130,6 @@ export default {
   color: white;
   transform: rotateY(180deg);
   overflow: auto;
-}
-
-.p{
-  
 }
 
 ul{

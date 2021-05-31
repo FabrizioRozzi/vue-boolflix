@@ -13,18 +13,19 @@
       <div class="flip-card-back">
         <ul>
           <li>
-            Titolo: {{film.name}}
+            <strong>Titolo : </strong> {{film.title}}
           </li>
           <li
             v-if="film.title != film.original_title"
           >
             
-              Titolo originale: {{film.original_title}}
+              <strong>Titolo originale: </strong> {{film.original_title}}
           </li>
           <li>
-            <flag :iso="film.original_language === 'en' ? 'gb' : film.original_language" />
+           <strong>Lingua: </strong> <flag :iso="film.original_language === 'en' ? 'gb' : film.original_language" />
           </li>
           <li>
+            <strong>Voto: </strong>
             <div class="star"
               v-for="index in 5"  :key="index"
             >
@@ -124,10 +125,6 @@ export default {
   color: white;
   transform: rotateY(180deg);
   overflow: auto;
-}
-
-.p{
-  
 }
 
 ul{

@@ -1,6 +1,7 @@
 <template>
   <div class="header">
     <div class="d-flex wrap-header justify-content-center align-items-center">
+      <a href="/"><img src="@/assets/img/logo_large.png" alt="Logo"></a>
       <form>
         <input 
           v-model="text"
@@ -53,6 +54,13 @@ export default {
     width: 100%;
     height: 100px;
     background-color: black;
+    img{
+      width: 400px;
+      height: 70px;
+      margin-right: 50px;
+      padding: 0 50px;
+      background-color: white;
+    }
     input{
       width: 400px;
     }

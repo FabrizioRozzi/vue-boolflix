@@ -3,6 +3,24 @@
     <SearchBar 
       @searching="startSearch"
     />
+    <div class="popular"
+      v-if="this.result.movie.length < 1 && this.result.tv.length < 1"
+    >
+      <h1>I film piú popolari: </h1>
+      <Film 
+        type='movie'
+        v-for="film in result.popolariMv"
+        :key="film.id"        
+        :film="film"
+      />
+      <h1>Le serie piú popolari: </h1>
+      <Serie 
+        type='movie'
+        v-for="serie in result.popolariTv"
+        :key="serie.id"        
+        :serie="serie"
+      />
+    </div>
     <div class="max">
       <h1 v-if="this.result.movie.length > 0">
         Film trovati:
@@ -49,18 +67,54 @@ export default {
     return{
       titles:{
         'movie' : 'Film trovati',
-        'tv' : 'Serie tv trovate' 
+        'tv' : 'Serie tv trovate',
+     
       },
       result:{
         'movie': [],
-        'tv':[]
+        'tv':[],
+        'popolariMv' : [],
+        'popolariTv' : []
       },
       apiURL : "https://api.themoviedb.org/3/search/",
       apiKey : '186ab9d59ce76af2382545bfd0366db4',
-      query : ''
+      query : '',
       
     }
   },
+    created(){
+     let type = 'popolariMv'
+      axios.get('https://api.themoviedb.org/3/movie/popular',{
+          params:{
+            api_key: this.apiKey,
+            language: 'it-IT'
+          }
+        })
+        .then(res => {
+           this.result[type] = res.data.results;
+           console.log(this.result[type]);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    
+      let typetv = 'popolariTv'
+      axios.get('https://api.themoviedb.org/3/tv/popular',{
+          params:{
+            api_key: this.apiKey,
+            language: 'it-IT'
+          }
+        })
+        .then(res => {
+           this.result[typetv] = res.data.results;
+           console.log(this.result[typetv]);
+        })
+        .catch(err => {
+          console.log(err);
+        })
+    
+  
+    },
     methods:{
       startSearch(obj){
         this.reset();
@@ -109,7 +163,7 @@ export default {
   h1{
     color:white;
   }
-  .max{
+  .max, .popular{
     max-width: 1200px;
     margin: 0 auto;
   }
