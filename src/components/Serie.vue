@@ -1,14 +1,10 @@
 <template>
-<div class="card-container">
+<div class="card-container" v-if="serie.poster_path != null">
   <div class="flip-card">
     <div class="flip-card-inner">
       <div class="flip-card-front">
         <img 
-          v-if="serie.poster_path != null"
           :src=" 'http://image.tmdb.org/t/p/w342' + serie.poster_path " alt="" style="width:180px;height:300px;">
-        <img 
-          v-else
-          src="@/assets/img/default.jpg" alt="">  
       </div>
       <div class="flip-card-back">
         <ul>

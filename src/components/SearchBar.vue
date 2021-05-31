@@ -64,6 +64,10 @@ export default {
     input{
       width: 400px;
     }
+    button{
+      background-color: red;
+      border-color: white;
+    }
   }
 
     

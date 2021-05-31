@@ -1,14 +1,11 @@
 <template>
-<div class="card-container">
+<div class="card-container" v-if="film.poster_path != null">
   <div class="flip-card">
     <div class="flip-card-inner">
       <div class="flip-card-front">
         <img 
-          v-if="film.poster_path != null"
-          :src=" 'http://image.tmdb.org/t/p/w342' + film.poster_path " alt="" style="width:180px;height:300px;">
-        <img 
-          v-else
-          src="@/assets/img/default.jpg" alt="">  
+          :src=" 'http://image.tmdb.org/t/p/w342' + film.poster_path " alt="" style="width:180px;height:300px;"> 
+        
       </div>
       <div class="flip-card-back">
         <ul>
@@ -27,17 +24,16 @@
           <li>
             <strong>Voto: </strong>
             <div class="star"
-              v-for="index in 5"  :key="index"
+              :style="`width:${7*film.vote_average}px`"
             >
-              <i
-                v-if="index > Math.round(film.vote_average/2)"
-                class="far fa-star">
-              </i>
-
-              <i 
-                v-else
-                class="fas fa-star">
-              </i>
+              <div class="cont-star">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              
             </div>
           </li>
           <li class="p">
@@ -72,6 +68,10 @@ export default {
 }
 .star{
   display: inline-block;
+  overflow-x: hidden;
+  .cont-star{
+    width: 70px;
+  }
 }
 
 .card-container{

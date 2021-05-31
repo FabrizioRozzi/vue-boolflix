@@ -7,7 +7,7 @@
       v-if="this.result.movie.length < 1 && this.result.tv.length < 1"
     >
       <h1>I film piú popolari: </h1>
-      <Film 
+      <Film
         type='movie'
         v-for="film in result.popolariMv"
         :key="film.id"        
@@ -15,7 +15,7 @@
       />
       <h1>Le serie piú popolari: </h1>
       <Serie 
-        type='movie'
+        type='tv'
         v-for="serie in result.popolariTv"
         :key="serie.id"        
         :serie="serie"
