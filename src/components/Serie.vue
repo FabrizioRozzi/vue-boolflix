@@ -41,7 +41,7 @@
         </ul>
       </div>
     </div>
-</div>
+  </div>
 </div>
   
 </template>
@@ -77,8 +77,7 @@ export default {
 }
 
 .card-container{
-  display: inline-flex;
-  justify-content: space-around;
+  display: inline-block;
   padding: 5px 10px;
 }
   

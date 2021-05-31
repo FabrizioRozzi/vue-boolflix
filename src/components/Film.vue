@@ -75,9 +75,9 @@ export default {
 }
 
 .card-container{
-  display: inline-flex;
+  display: inline-block;
   justify-content: space-between;
-  
+
   padding: 5px 10px;
 }
   

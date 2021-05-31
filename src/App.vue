@@ -6,45 +6,56 @@
     <div class="popular"
       v-if="this.result.movie.length < 1 && this.result.tv.length < 1"
     >
-      <h1>I film piú popolari: </h1>
-      <Film
-        type='movie'
-        v-for="film in result.popolariMv"
-        :key="film.id"        
-        :film="film"
-      />
-      <h1>Le serie piú popolari: </h1>
-      <Serie 
-        type='tv'
-        v-for="serie in result.popolariTv"
-        :key="serie.id"        
-        :serie="serie"
-      />
+      <h3>I film piú popolari: </h3>
+      <div class="cont">
+        <Film
+          type='movie'
+          v-for="film in result.popolariMv"
+          :key="film.id"        
+          :film="film"
+        />
+      </div>
+      
+      <h3>Le serie piú popolari: </h3>
+      <div class="cont">
+        <Serie 
+          type='tv'
+          v-for="serie in result.popolariTv"
+          :key="serie.id"        
+          :serie="serie"
+        />
+      </div>
+
+      
     </div>
     <div class="max">
-      <h1 v-if="this.result.movie.length > 0">
+      <h3 v-if="this.result.movie.length > 0">
         Film trovati:
-      </h1>
-      <Film 
-        type='movie'
-        v-for="film in result.movie"
-        :key="film.id"        
-        :film="film"
-      />
+      </h3>
+      <div class="cont">
+        <Film 
+          type='movie'
+          v-for="film in result.movie"
+          :key="film.id"        
+          :film="film"
+        />
+      </div>
 
         
     
 
     
-      <h1 v-if="this.result.tv.length > 0">
+      <h3 v-if="this.result.tv.length > 0">
         Serie tv trovate:
-      </h1>
-      <Serie 
-        type='tv'
-        v-for="serie in result.tv"
-        :key="serie.id"
-        :serie="serie"
-      />
+      </h3>
+      <div class="cont">
+        <Serie 
+          type='tv'
+          v-for="serie in result.tv"
+          :key="serie.id"
+          :serie="serie"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -160,11 +171,34 @@ export default {
 
 <style lang="scss">
   @import '@/assets/style/general';
-  h1{
+  h3{
     color:white;
   }
   .max, .popular{
     max-width: 1200px;
+    height: 500px;
     margin: 0 auto;
+  }
+
+  .cont{
+    display: flex;
+    overflow-x: auto;
+  }
+
+  * {
+    scrollbar-width: thin;
+    scrollbar-color:red #252525;
+  }
+  /* Chrome, Edge, and Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+  }
+  *::-webkit-scrollbar-track {
+    background: #252525;
+  }
+  *::-webkit-scrollbar-thumb {
+    background-color: #9F0000;
+    border-radius: 5px;
+    border: 1px solid black;
   }
 </style>
